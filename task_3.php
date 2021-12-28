@@ -33,9 +33,16 @@
                     <div class="panel-container show">
                         <div class="panel-content">
                             <ol class="breadcrumb page-breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Главная</a></li>
-                                <li class="breadcrumb-item"><a href="#">PHP</a></li>
-                                <li class="breadcrumb-item active">Функции</li>
+                                <?php
+                                $array = [
+                                    ['tag' => '<li class="breadcrumb-item"><a href="#">Главная</a></li>'],
+                                    ['tag' => '<li class="breadcrumb-item"><a href="#">PHP</a></li>'],
+                                    ['tag' => '<li class="breadcrumb-item active">Функции</li>'],
+                                ];
+                                foreach($array as $value) {
+                                    echo $value['tag'];
+                                }
+                                ?>
                             </ol>
                         </div>
                     </div>
