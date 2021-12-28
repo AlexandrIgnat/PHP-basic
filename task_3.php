@@ -35,14 +35,28 @@
                             <ol class="breadcrumb page-breadcrumb">
                                 <?php
                                 $array = [
-                                    ['tag' => '<li class="breadcrumb-item"><a href="#">Главная</a></li>'],
-                                    ['tag' => '<li class="breadcrumb-item"><a href="#">PHP</a></li>'],
-                                    ['tag' => '<li class="breadcrumb-item active">Функции</li>'],
-                                ];
-                                foreach($array as $value) {
-                                    echo $value['tag'];
-                                }
-                                ?>
+                                    [
+                                        'href' => 'https://www.php.net/',
+                                        'title' => 'Главная',
+                                        'is_link' => true,
+                                    ],
+                                    [
+                                        'href' => 'https://www.php.net/releases/8.1/en.php',
+                                        'title' => 'PHP',
+                                        'is_link' => true,
+                                    ],
+                                    [
+                                        'title' => 'Функции',
+                                        'is_link' => false,
+                                    ],
+                                ];?>
+                                <?php foreach($array as $value):?>
+                                    <?php if($value['is_link']):?>
+                                        <li class="breadcrumb-item"><a href="<?php echo $value['href']?>"><?php echo $value['title']?></a></li>
+                                    <?php else :?>
+                                        <li class="breadcrumb-item active"><?php echo $value['title']?></li>
+                                    <?php endif?>
+                                <?php endforeach?>
                             </ol>
                         </div>
                     </div>
