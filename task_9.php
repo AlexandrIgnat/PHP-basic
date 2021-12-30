@@ -1,3 +1,35 @@
+
+<?php
+
+$driver = 'mysql'; // тип базы данных, с которой мы будем работать 
+
+$host = '127.0.0.1';// альтернатива '127.0.0.1' - адрес хоста, в нашем случае локального
+
+$db_name = 'php_basic'; // имя базы данных 
+
+$db_user = 'root'; // имя пользователя для базы данных 
+
+$db_password = ''; // пароль пользователя 
+
+$charset = 'utf8'; // кодировка по умолчанию 
+
+$options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]; // массив с дополнительными настройками подключения. В данном примере мы установили отображение ошибок, связанных с базой данных, в виде исключений 
+
+
+try {
+    $dsn = "$driver:host=$host;dbname=$db_name;charset=$charset"; $pdo = new PDO($dsn, $db_user, $db_password, $options); // подставляем переменные для подключения к бд
+}
+
+catch(PDOException $e) {
+    die('Error :' . $e->getMessage()); // выводим ошибку в подключении
+}
+
+
+
+// $people = $statement->fetchAll(PDO::FETCH_ASSOC); 
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,10 +67,10 @@
                         <div class="panel-content">
                             <div class="panel-content">
                                 <div class="form-group">
-                                    <form action="">
+                                    <form action="task_9.php" method="POST">
                                         <label class="form-label" for="simpleinput">Text</label>
-                                        <input type="text" id="simpleinput" class="form-control">
-                                        <button class="btn btn-success mt-3">Submit</button>
+                                        <input type="text" id="simpleinput" name="text" class="form-control">
+                                        <button type="submit" class="btn btn-success mt-3">Submit</button>
                                     </form>
                                 </div>
                             </div>
@@ -48,7 +80,17 @@
             </div>
         </main>
         
+        <?php
 
+if (isset($_POST['text']) && $_POST['text'] != '') {
+$name = $_POST['text'];
+$sql = "INSERT INTO `input` (`id`, `text`) VALUES (NULL, '$name');"; // формируем запрос для бд
+
+$statement = $pdo->prepare($sql); // передаем значения в pdo
+// var_dump($name);
+$statement->execute();
+}
+?>
         <script src="js/vendors.bundle.js"></script>
         <script src="js/app.bundle.js"></script>
         <script>
