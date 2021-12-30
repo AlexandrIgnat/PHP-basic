@@ -1,3 +1,35 @@
+<?php
+
+$driver = 'mysql'; // тип базы данных, с которой мы будем работать 
+
+$host = '127.0.0.1';// альтернатива '127.0.0.1' - адрес хоста, в нашем случае локального
+
+$db_name = 'php_basic'; // имя базы данных 
+
+$db_user = 'root'; // имя пользователя для базы данных 
+
+$db_password = ''; // пароль пользователя 
+
+$charset = 'utf8'; // кодировка по умолчанию 
+
+$options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]; // массив с дополнительными настройками подключения. В данном примере мы установили отображение ошибок, связанных с базой данных, в виде исключений 
+
+
+try {
+    $dsn = "$driver:host=$host;dbname=$db_name;charset=$charset"; $pdo = new PDO($dsn, $db_user, $db_password, $options); // подставляем переменные для подключения к бд
+}
+
+catch(PDOException $e) {
+    die('Error :' . $e->getMessage()); // выводим ошибку в подключении
+}
+
+$sql = "SELECT * FROM personal_information"; // формируем запрос для бд
+
+$statement = $pdo->query($sql); // передаем значения в pdo
+
+$people = $statement->fetchAll(PDO::FETCH_ASSOC); 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,50 +79,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php foreach($people as $person) :?>
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
+                                            <th scope="row"><?php echo $person['id']?></th>
+                                            <td><?php echo $person['first_name']?></td>
+                                            <td><?php echo $person['last_name']?></td>
+                                            <td><?php echo $person['username']?></td>
                                             <td>
-                                                <a href="show.php?id=" class="btn btn-info">Редактировать</a>
-                                                <a href="edit.php?id=" class="btn btn-warning">Изменить</a>
-                                                <a href="delete.php?id=" class="btn btn-danger">Удалить</a>
+                                                <a href="show.php?id=<?php echo $person['id']?>" class="btn btn-info">Редактировать</a>
+                                                <a href="edit.php?id=<?php echo $person['id']?>" class="btn btn-warning">Изменить</a>
+                                                <a href="delete.php?id=<?php echo $person['id']?>" class="btn btn-danger">Удалить</a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>
-                                                <a href="show.php?id=" class="btn btn-info">Редактировать</a>
-                                                <a href="edit.php?id=" class="btn btn-warning">Изменить</a>
-                                                <a href="delete.php?id=" class="btn btn-danger">Удалить</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                            <td>
-                                                <a href="show.php?id=" class="btn btn-info">Редактировать</a>
-                                                <a href="edit.php?id=" class="btn btn-warning">Изменить</a>
-                                                <a href="delete.php?id=" class="btn btn-danger">Удалить</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>Larry the Bird</td>
-                                            <td> Bird</td>
-                                            <td>@twitter</td>
-                                            <td>
-                                                <a href="show.php?id=" class="btn btn-info">Редактировать</a>
-                                                <a href="edit.php?id=" class="btn btn-warning">Изменить</a>
-                                                <a href="delete.php?id=" class="btn btn-danger">Удалить</a>
-                                            </td>
-                                        </tr>
+                                        <?php endforeach?>
                                     </tbody>
                                 </table>
                             </div>
