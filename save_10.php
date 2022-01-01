@@ -35,16 +35,19 @@ $statement->execute(['text' => $text]);
 $information = $statement->fetch(PDO::FETCH_ASSOC);
 
 if (!empty($information)) {
-    $message = "Введенная запись уже присутствует в таблице";
-    $_SESSION['message'] = $message;
+    $danger = "Введенная запись уже присутствует в таблице";
+    $_SESSION['danger'] = $danger;
+
     header("Location: /task_10.php");
     exit;
-
 }
 
 $sql = "INSERT INTO `input` (`id`, `text`) VALUES (NULL, '$text');"; // формируем запрос для бд
 $statement = $pdo->prepare($sql); // передаем значения в pdo
 $statement->execute();
+
+$success = "Запись успешно добавлена";
+$_SESSION['success'] = $success;
 
 header("Location: /task_10.php");
 ?>

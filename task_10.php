@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,9 +37,22 @@
                         <div class="panel-content">
                             <div class="panel-content">
                                 <div class="form-group">
+                                    <?php if (isset($_SESSION['danger'])) :?> 
                                     <div class="alert alert-danger fade show" role="alert">
-                                        You should check in on some of those fields below.
+                                        <?php
+                                        echo $_SESSION['danger'];
+                                        unset ($_SESSION['danger']);
+                                        ?>
                                     </div>
+                                    <?php endif?>
+                                    <?php if (isset($_SESSION['success'])) :?> 
+                                    <div class="alert alert-success fade show" role="alert">
+                                        <?php
+                                        echo $_SESSION['success'];
+                                        unset ($_SESSION['success']);
+                                        ?>
+                                    </div>
+                                    <?php endif?>
                                     <form method="post" action="save_10.php">
                                         <label class="form-label" for="simpleinput">Text</label>
                                         <input type="text" id="simpleinput" name="text" class="form-control">

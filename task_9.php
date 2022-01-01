@@ -81,15 +81,41 @@ catch(PDOException $e) {
         </main>
         
         <?php
-
-if (isset($_POST['text']) && $_POST['text'] != '') {
-$name = $_POST['text'];
-$sql = "INSERT INTO `input` (`id`, `text`) VALUES (NULL, '$name');"; // формируем запрос для бд
-
-$statement = $pdo->prepare($sql); // передаем значения в pdo
-// var_dump($name);
-$statement->execute();
-}
+        // if (isset($_POST['text']) && $_POST['text'] != '') {
+        
+        //     // $sql = "INSERT INTO `input` (`id`, `text`) VALUES (NULL, '$name');"; // формируем запрос для бд
+        //     // $sql2 = "SELECT text FROM input";
+            
+        //     // $statement = $pdo->prepare($sql); // передаем значения в pdo
+            
+        //     // $statement->execute();
+            
+        //     $sql2 = "SELECT text FROM input";
+        //     $statement2 = $pdo->query($sql2); // передаем значения в pdo
+        //     // $statement2->execute();
+        //     $information = $statement2->fetchAll(PDO::FETCH_ASSOC); 
+        //     $name = $_POST['text'];
+        //     // $exe;
+        //         foreach( $information as $value) :
+        //             if ($value['text'] == $name) {
+        //                 $exe = true;
+        //                 break;
+        //             }
+        //             else {
+        //                 $exe = false;
+        //             }
+        //             // var_dump($key_name['text']);
+        //         endforeach;
+        //         // if ()
+        //         var_dump($exe);
+        // }
+        if (isset($_POST['text']) && $_POST['text'] != '') {
+            $name = $_POST['text'];
+            $sql = "INSERT INTO `input` (`id`, `text`) VALUES (NULL, '$name');"; // формируем запрос для бд
+            
+            $statement = $pdo->prepare($sql); // передаем значения в pdo
+            $statement->execute();
+            }
 ?>
         <script src="js/vendors.bundle.js"></script>
         <script src="js/app.bundle.js"></script>
