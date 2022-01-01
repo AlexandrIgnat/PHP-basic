@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,10 +40,10 @@
                                     <div class="alert alert-danger fade show" role="alert">
                                         You should check in on some of those fields below.
                                     </div>
-                                    <form action="">
+                                    <form method="post" action="save_10.php">
                                         <label class="form-label" for="simpleinput">Text</label>
-                                        <input type="text" id="simpleinput" class="form-control">
-                                        <button class="btn btn-success mt-3">Submit</button>
+                                        <input type="text" id="simpleinput" name="text" class="form-control">
+                                        <button type="submit" class="btn btn-success mt-3">Submit</button>
                                     </form>
                                 </div>
                             </div>
