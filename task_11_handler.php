@@ -60,7 +60,7 @@ if(!empty($table)) {
 else {
     if ((isset($_POST['email']) && (isset($_POST['password']))) && (($_POST['email'] != '') && ($_POST['password'] != ''))) {
         $password = password_hash($password, PASSWORD_BCRYPT, $option);
-        $sql = "INSERT INTO `users` (`id`, `email`, `password`) VALUES (NULL, '$email', '$password');"; // формируем запрос для бд
+        $sql = "INSERT INTO `users` (`id`, `email`, `password`) VALUES (NULL, '$email', '$password')"; // формируем запрос для бд
         $statement = $pdo->prepare($sql); // передаем значения в pdo
         $statement->execute();  
         $success = "Запись успешно добавлена";
