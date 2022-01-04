@@ -1,15 +1,13 @@
 <?php
 session_start();
-// if(isset($_SESSION['email'])) {
-//     header("Location: success.php");
-// }
-// else {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
         <meta charset="utf-8">
-        <title>Подготовительные задания к курсу</title>
+        <title>
+            Подготовительные задания к курсу
+        </title>
         <meta name="description" content="Chartist.html">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
@@ -39,36 +37,10 @@ session_start();
                         <div class="panel-content">
                             <div class="panel-content">
                                 <div class="form-group">
-                                    <?php if (isset($_SESSION['danger'])) :?> 
-                                    <div class="alert alert-danger fade show" role="alert">
-                                        <?php
-                                        echo $_SESSION['danger'];
-                                        unset ($_SESSION['danger']);
-                                        ?>
-                                    </div>
-                                    <?php endif?>
-                                    <?php if (isset($_SESSION['success'])) :?> 
                                     <div class="alert alert-success fade show" role="alert">
-                                        <?php
-                                        echo $_SESSION['success'];
-                                        unset ($_SESSION['success']);
-                                        header("Location: task_15.php");
-                                        ?>
+                                        Здравствуйте, <?php echo $_SESSION['email']?>.
                                     </div>
-                                    <?php endif?>
-                                    <!-- <div class="alert alert-danger fade show" role="alert">
-                                        Неверный логин или пароль
-                                    </div> -->
-                                    <form method="post" action="task_14_handler.php">
-                                        <div class="form-group">
-                                        	<label class="form-label" for="simpleinput">Email</label>
-                                        <input type="text" id="simpleinput" class="form-control" name="email">
-                                        </div>
-
-                                        <label class="form-label" for="simpleinput">Password</label>
-                                        <input type="password" id="simpleinput" class="form-control" name="password">
-                                        <button type="submit" class="btn btn-success mt-3">Submit</button>
-                                    </form>
+                                    <a href="task_15_handler.php" class="btn btn-info">Выйти</a>
                                 </div>
                             </div>
                         </div>
