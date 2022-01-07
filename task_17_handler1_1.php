@@ -1,7 +1,9 @@
 <?php
 session_start();
-
+$_SESSION["origURL"] = $_SERVER["HTTP_REFERER"];
 $filename = 'img/upload/';
+$SES = $_SESSION["origURL"];
+var_dump($SES);
 
 $driver = 'mysql'; // тип базы данных, с которой мы будем работать 
 $host = '127.0.0.1';// альтернатива '127.0.0.1' - адрес хоста, в нашем случае локального
@@ -28,9 +30,25 @@ if(!empty($_GET)) {
     $sql = "DELETE FROM images WHERE id=:id"; // формируем запрос для бд
     $statement = $pdo->prepare($sql); // передаем значения в pdo
     $statement->execute($_GET);
-    header("Location: /task_17_handler.php");
+    if ($SES = "http://tasks/task_18.php") {
+        // unset($_SESSION["origURL"]);
+        header("Location: /task_18_handler.php");
+    }
+    if ($SES = "http://tasks/task_17.php") {
+        // unset($_SESSION["origURL"]);
+        header("Location: /task_17_handler.php");
+    }
 }
 else {
-    header("Location: /task_17.php");
+    if ($SES = "http://tasks/task_18.php") {
+        // unset($_SESSION["origURL"]);
+        header("Location: /task_18.php");
+    }
+    else {
+        // unset($_SESSION["origURL"]);
+        header("Location: /task_17.php");
+    }
+
+   
 }
 ?>

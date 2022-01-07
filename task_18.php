@@ -1,6 +1,6 @@
 <?php
 session_start();
-// unset($_SESSION["origURL"]);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,16 +20,11 @@ session_start();
         <link rel="stylesheet" media="screen, print" href="css/fa-solid.css">
         <link rel="stylesheet" media="screen, print" href="css/fa-brands.css">
         <link rel="stylesheet" media="screen, print" href="css/fa-regular.css">
-        <style>
-            .row--modification {
-                flex-direction: column;
-            }
-        </style>
     </head>
     <body class="mod-bg-1 mod-nav-link ">
         <main id="js-page-content" role="main" class="page-content">
-            <div class="row row--modification">
-                <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6">
                     <div id="panel-1" class="panel">
                         <div class="panel-hdr">
                             <h2>
@@ -44,12 +39,12 @@ session_start();
                             <div class="panel-content">
                                 <div class="panel-content">
                                     <div class="form-group">
-                                    <form method="post" action="task_17_handler.php" enctype="multipart/form-data">
+                                        <form method="post" action="task_18_handler.php" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <label class="form-label" for="simpleinput">Image</label>
-                                            <input type="file" id="simpleinput" class="form-control" name="images">
+                                            <input type="file" multiple id="simpleinput" class="form-control" name="files[]">
                                             </div>
-                                            <button type="submit" class="btn btn-success mt-3">Submit</button>
+                                            <button class="btn btn-success mt-3">Submit</button>
                                         </form>
                                     </div>
                                 </div>
@@ -58,7 +53,7 @@ session_start();
                     </div>
                 </div>
 
-                <div class="col-md-10">
+                <div class="col-md-6">
                     <div id="panel-1" class="panel">
                         <div class="panel-hdr">
                             <h2>
@@ -83,15 +78,14 @@ session_start();
                                         <?php endif?>
                                         <!-- <div class="col-md-3 image">
                                             <img src="img/demo/gallery/1.jpg">
-                                            <a class="btn btn-danger" href="task_17_handler.php?id=1" onclick="confirm('Вы уверены?');">Удалить</a>
                                         </div>
-                                        <div class="col-md-3">
+
+                                        <div class="col-md-3 image">
                                             <img src="img/demo/gallery/2.jpg">
-                                            <a class="btn btn-danger" onclick="confirm('Вы уверены?');" href="#">Удалить</a>
                                         </div>
-                                        <div class="col-md-3">
+
+                                        <div class="col-md-3 image">
                                             <img src="img/demo/gallery/3.jpg">
-                                            <a class="btn btn-danger" onclick="confirm('Вы уверены?');" href="#">Удалить</a>
                                         </div> -->
                                     </div>
                                 </div>
