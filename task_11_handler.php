@@ -11,7 +11,8 @@ $charset = 'utf8'; // кодировка по умолчанию
 $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]; // массив с дополнительными настройками подключения. В данном примере мы установили отображение ошибок, связанных с базой данных, в виде исключений 
 
 try {
-    $dsn = "$driver:host=$host;dbname=$db_name;charset=$charset"; $pdo = new PDO($dsn, $db_user, $db_password, $options); // подставляем переменные для подключения к бд
+    $dsn = "$driver:host=$host;dbname=$db_name;charset=$charset"; 
+    $pdo = new PDO($dsn, $db_user, $db_password, $options); // подставляем переменные для подключения к бд
 }
 
 catch(PDOException $e) {
